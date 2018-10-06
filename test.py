@@ -31,23 +31,23 @@ class Mover_Tests(unittest.TestCase):
     def test_mover_returns_all_the_possible_next_moves_for_edges(self):
         moveStates = [
             [
-                [1, 2, 3], 
-                [4, 0, 8], 
+                [1, 2, 3],
+                [0, 8, 4],
                 [7, 6, 5]
             ],
             [
-                [1, 2, 3], 
-                [4, 0, 8], 
+                [0, 2, 3],
+                [1, 8, 4],
                 [7, 6, 5]
             ],
             [
-                [1, 2, 3], 
-                [4, 0, 8], 
+                [1, 2, 3],
+                [8, 0, 4],
                 [7, 6, 5]
             ],
             [
-                [1, 2, 3], 
-                [4, 0, 8], 
+                [1, 2, 3],
+                [0, 8, 4],
                 [7, 6, 5]
             ]
         ]
