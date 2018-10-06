@@ -31,11 +31,6 @@ class Mover_Tests(unittest.TestCase):
     def test_mover_returns_all_the_possible_next_moves_for_edges(self):
         moveStates = [
             [
-                [1, 2, 3],
-                [0, 8, 4],
-                [7, 6, 5]
-            ],
-            [
                 [0, 2, 3],
                 [1, 8, 4],
                 [7, 6, 5]
@@ -47,8 +42,8 @@ class Mover_Tests(unittest.TestCase):
             ],
             [
                 [1, 2, 3],
-                [0, 8, 4],
-                [7, 6, 5]
+                [7, 8, 4],
+                [0, 6, 5]
             ]
         ]
         self.assertEqual(mover(mover(tile())[2]), moveStates)
