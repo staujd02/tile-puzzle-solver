@@ -28,6 +28,32 @@ class Mover_Tests(unittest.TestCase):
         ]
         self.assertEqual(mover(tile()), moveStates)
 
+    # When the open tile is in the top row   
+    def test_move_up_gives_a_board_when_the_blank_was_moved_up(self):
+        expectedTile = [
+            [1, 0, 3], 
+            [8, 2, 4], 
+            [7, 6, 5]
+        ]
+        self.assertEqual(move_up(tile()), expectedTile)
+
+    # When the open tile is in the bottom row
+    def test_move_up_gives_a_board_when_the_blank_is_in_the_middle(self):
+        inital = tile()
+        swap = list(inital[1])
+        inital[1] = list(inital[2])
+        inital[2] = swap
+        expectedTile = [
+            [1, 2, 3], 
+            [7, 0, 5],
+            [8, 6, 4] 
+        ]
+        self.assertEqual(move_up(inital), expectedTile)
+
+    # When the 
+    def test_move_up_when_not_possible_yields_nothing(self):
+        self.assertEqual(move_up(move_up(tile())), None)
+    
     def test_mover_returns_all_the_possible_next_moves_for_edges(self):
         moveStates = [
             [
