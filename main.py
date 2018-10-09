@@ -36,19 +36,14 @@ def move_up(tile):
 def move_right(tile):
     return move_horizontally(tile, direction=1)
 
-def mover(tile):
-    # results = []
-    # for row in tile:
-    #     for square in row:
-    #         if(square == 0):
-    #             move_up = list(tile)
-    #             move_down = list(tile)
-    #             move_left = list(tile)
-    #             move_right = list(tile)
-    #             return [move_up, move_down, move_left, move_right]
-    return [
-        [[1, 0, 3], [8, 2, 4], [7, 6, 5]],
-        [[1, 2, 3], [0, 8, 4], [7, 6, 5]],
-        [[1, 2, 3], [8, 4, 0], [7, 6, 5]],
-        [[1, 2, 3], [8, 6, 4], [7, 0, 5]]
+def move_left(tile):
+    return move_horizontally(tile, direction=-1)
+
+def possible_moves(tile):
+    moves = [ 
+        move_up(tile), 
+        move_left(tile), 
+        move_right(tile),
+        move_down(tile), 
     ]
+    return [item for item in moves if item != None ]
