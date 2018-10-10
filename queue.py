@@ -1,7 +1,3 @@
-# Code copied from 
-# https://www.geeksforgeeks.org/priority-queue-in-python/
-# Data structures is not a focus of this assignment
-
 class PriorityQueue(object): 
     def __init__(self): 
         self.queue = [] 
@@ -10,9 +6,9 @@ class PriorityQueue(object):
         return ' '.join([str(i) for i in self.queue]) 
   
     def isEmpty(self): 
-        return len(self.queue) == [] 
+        return len(self.queue) == 0 
   
-    def insert(self, data): 
+    def insert(self, data, priority): 
         self.queue.append(data) 
   
     def pop(self): 
