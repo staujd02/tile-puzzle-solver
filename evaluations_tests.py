@@ -50,3 +50,29 @@ class Metric_Tests(unittest.TestCase):
             [7, 6, 5]
         ] 
         self.assertEqual(self.metrics.subset(tile), 0)
+
+    # When one tile is out of place
+    def test_manhattan_distance_yields_one(self):
+        tile = Mover.move_down(Tile.tile())
+        self.assertEqual(self.metrics.manhattan(tile), 1)
+
+    def test_manhattan_distance_yields_zero(self):
+        self.assertEqual(self.metrics.manhattan(Tile.tile()), 0)
+
+    # When 14 tiles are out of place 
+    def test_manhattan_distance_yields_fourteen(self):
+        tile = [
+            [2, 4, 0],
+            [8, 6, 7],
+            [5, 1, 3],
+        ]
+        self.assertEqual(self.metrics.manhattan(tile), 14)
+
+    # When two tiles are out of place 
+    def test_manhattan_distance_yields_two(self):
+        tile = [
+            [1, 3, 0],
+            [8, 2, 4],
+            [7, 6, 5],
+        ]
+        self.assertEqual(self.metrics.manhattan(tile), 2)
