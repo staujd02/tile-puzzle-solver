@@ -1,3 +1,5 @@
+import Queue
+
 class PriorityQueue(object): 
     def __init__(self): 
         self.queue = {} 
@@ -9,21 +11,27 @@ class PriorityQueue(object):
         return len(self.queue) == 0 
   
     def insert(self, data, priority): 
-        self.queue[str(priority)] = [data]
+        if self.queue.get(str(priority), None) == None:
+            self.queue[str(priority)] = Queue.Queue()
+        self.queue[str(priority)].put(data)
   
-    def pop(self): 
+    def findMaxQueue(self):
+        max = iter(self.queue.keys()).next()
+        for x in self.queue:
+            if int(x) < int(max):
+                max = x
+        return max
+
+    def pop_element(self, max):
+        item = self.queue[max].get()
+        if self.queue[max].empty():
+            del self.queue[max]
+        return item
+
+    def pop(self):
         try:
-            max = -1
-            for x in self.queue:
-                if(max == -1):
-                    max = x
-                    continue
-                if int(x) < int(max): 
-                    max = x
-            item = self.queue[max].pop()
-            if len(self.queue[max]) == 0:
-                del self.queue[max] 
-            return item 
+            max = self.findMaxQueue()
+            return self.pop_element(max) 
         except IndexError: 
             print() 
             exit() 
