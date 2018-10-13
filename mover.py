@@ -3,7 +3,7 @@ from tile import Tile
 class Mover:
     @staticmethod
     def alter_tile(tile, direction, up):
-        for rowIndex, row in enumerate(tile):
+        for rowIndex, row in enumerate(tile.layout):
             for squareIndex, square in enumerate(row):
                 if(square == 0):
                     if(up):

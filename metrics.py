@@ -3,30 +3,32 @@ from tile import Tile
 class Metrics(object):
 
     def displaced(self, tile):
-        goal = Tile.tile() 
+        goal = Tile() 
         total = 0
-        for rowIndex, row in enumerate(tile):
+        for rowIndex, row in enumerate(tile.layout):
             for squareIndex, square in enumerate(row):
-                if square != 0 and square != goal[rowIndex][squareIndex]:
+                if square != 0 and square != goal.layout[rowIndex][squareIndex]:
                     total += 1
         return total
 
     def transform(self, tile):
         result = [[],[],[]]
-        for i in range(len(tile)):
-            for j in range(len(tile[0])):
-                result[i].append(tile[j][i])
-        return result
+        for i in range(len(tile.layout)):
+            for j in range(len(tile.layout[0])):
+                result[i].append(tile.layout[j][i])
+        t = Tile()
+        t.layout = result
+        return t
 
     def listMatches(self, tile, goal):
         matches = [False, False, False]
-        for index, row in enumerate(tile):
-            if(goal[index] == row):
+        for index, row in enumerate(tile.layout):
+            if(goal.layout[index] == row):
                 matches[index] = True
         return matches
 
     def subset(self, tile):
-        goal = Tile.tile()
+        goal = Tile()
         rowMatches = self.listMatches(tile, goal)
         columnMatches = self.listMatches(
             self.transform(tile), self.transform(goal)
@@ -51,7 +53,7 @@ class Metrics(object):
     def manhattan(self, tile):
         goalDef = self.goalCorrdinates()
         sum = 0
-        for rowIndex, row in enumerate(tile):
+        for rowIndex, row in enumerate(tile.layout):
             for squareIndex, square in enumerate(row):
                 sum += self.distance(square, rowIndex, squareIndex, goalDef)
         return sum
