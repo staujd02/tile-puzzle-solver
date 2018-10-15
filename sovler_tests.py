@@ -14,7 +14,7 @@ class Solver_Test(unittest.TestCase):
             [8, 2, 4],
             [7, 6, 5],
         ] 
-        self.assertEqual(self.solver.solve(tile), [Tile().layout])
+        self.assertEqual(self.solver.solve(tile), [tile.layout, Tile().layout])
     
     def test_that_solver_can_solve_a_two_step_puzzle(self):
         tile = Tile()
@@ -24,6 +24,7 @@ class Solver_Test(unittest.TestCase):
             [7, 6, 5],
         ]
         pattern = [
+            tile.layout,
             [[1, 0, 3],
             [8, 2, 4],
             [7, 6, 5],], 
@@ -39,6 +40,7 @@ class Solver_Test(unittest.TestCase):
             [7, 6, 5],
         ]
         pattern = [
+            tile.layout,
             [[1, 3, 0],
             [8, 2, 4],
             [7, 6, 5],], 
