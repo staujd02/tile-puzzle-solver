@@ -7,6 +7,9 @@ class Tile_Tests(unittest.TestCase):
         self.assertEquals(len(Tile().layout[1]), 3)
         self.assertEquals(len(Tile().layout[2]), 3)
 
+    def test_a_tile_has_a_history_that_starts_empty(self):
+        self.assertEqual(Tile().history, [])
+
     def test_a_tile_is_composed_of_numbers(self):
         for target_list in Tile().layout:
             for element in target_list:
