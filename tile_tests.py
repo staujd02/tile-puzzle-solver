@@ -7,6 +7,28 @@ class Tile_Tests(unittest.TestCase):
         self.assertEquals(len(Tile().layout[1]), 3)
         self.assertEquals(len(Tile().layout[2]), 3)
 
+    def test_swapping_adds_to_tile_history(self):
+        tile = Tile()
+        tile.history = [[
+            [1, 2, 3], 
+            [8, 0, 4], 
+            [7, 6, 5]
+        ]]
+        tile.layout = [
+            [1, 2, 3], 
+            [8, 4, 0], 
+            [7, 6, 5]
+        ]
+        expected = [
+            [[1, 2, 3], 
+            [8, 0, 4], 
+            [7, 6, 5]],
+            [[1, 2, 3], 
+            [8, 4, 0], 
+            [7, 6, 5]]
+        ]
+        self.assertEqual(Tile.swap(Tile.duplicate(tile),0,2,1,2).history, expected)
+
     def test_a_tile_has_a_history_that_starts_empty(self):
         self.assertEqual(Tile().history, [])
 

@@ -4,29 +4,6 @@ from mover import Mover
 
 class Mover_Tests(unittest.TestCase):
 
-    def test_mover_appends_tile_history(self):
-        tile = Tile()
-        tile.history = [[
-            [1, 2, 3], 
-            [8, 0, 4], 
-            [7, 6, 5]
-        ]]
-        tile.layout = [
-            [1, 2, 3], 
-            [8, 4, 0], 
-            [7, 6, 5]
-        ]
-        expected = [
-            [[1, 2, 3], 
-            [8, 0, 4], 
-            [7, 6, 5]],
-            [[1, 2, 3], 
-            [8, 4, 0], 
-            [7, 6, 5]]
-        ]
-        self.assertEqual(Mover.move_up(tile).history, expected)
-        pass
-
     # When the empty square is in the rightmost column
     def test_move_right_yields_nothing(self):
         layout = [
