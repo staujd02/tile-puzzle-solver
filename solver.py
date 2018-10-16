@@ -15,9 +15,24 @@ class Solver():
             if (self.original.layout != outcome.layout):
                 self.queue.insert(outcome, self.gofH(outcome) + len(tile.history))
 
+    def solvable(self, tile):
+        mylist = []
+        sum = 0
+        for row in tile.layout:
+            for num in row:
+                if num != 0:
+                    mylist.append(num)
+        for indx, num in enumerate(mylist):
+            for rest in mylist[indx+1:8]:
+                if num > rest:
+                    sum += 1
+        return sum % 2 == 1
+
     def solve(self, tile):
         self.queue = PriorityQueue()
         self.metrics = Metrics()
+        if not self.solvable(tile):
+            raise "Puzzle is not solvable"
         self.original = tile
         self.queue.insert(self.original, 1)
         while(True):

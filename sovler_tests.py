@@ -7,6 +7,20 @@ class Solver_Test(unittest.TestCase):
     def setUp(self):
         self.solver = Solver()
 
+    def test_solver_rejects_an_invalid_puzzle_setup(self):
+        error = False
+        tile = Tile()
+        tile.layout = [
+            [1, 2, 3],
+            [8, 0, 4],
+            [7, 5, 6],
+        ] 
+        try:
+            self.solver.solve(tile)
+        except:
+            error = True
+        self.assertEqual(error, True)
+
     def test_that_solver_can_solve_a_simple_puzzle(self):
         tile = Tile()
         tile.layout = [
