@@ -32,7 +32,7 @@ class Metric_Tests(unittest.TestCase):
             [1, 7, 8],
             [3, 4, 0]
         ] 
-        self.assertEqual(self.metrics.subset(results), 1)
+        self.assertEqual(self.metrics.subset(results), 5)
     
     # When upper left corner is solved
     def test_corner_yields_zero(self):

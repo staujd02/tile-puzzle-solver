@@ -37,7 +37,7 @@ class Metrics(object):
             for two in [0, 2]:
                 if(columnMatches[one] and rowMatches[two]):
                     return 0
-        return 1
+        return 5
 
     def goalCorrdinates(self):
         return { 1: [0, 0], 2: [0, 1], 3: [0, 2],
