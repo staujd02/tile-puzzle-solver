@@ -3,6 +3,9 @@ from mover import Mover
 from queue import PriorityQueue
 from metrics import Metrics
 
+class NotSolvable(Exception):
+    pass
+
 class Solver():
 
     def gofH(self, tile):
@@ -12,7 +15,7 @@ class Solver():
         for outcome in Mover.possible_moves(tile):
             if(outcome.layout == Tile().layout):
                 return outcome.history
-            if (self.original.layout != outcome.layout):
+            if (self.original.layout != outcome.layout and (tile.history == [] or outcome.layout != tile.history[-1])):
                 self.queue.insert(outcome, self.gofH(outcome) + len(tile.history))
 
     def solvable(self, tile):
@@ -28,11 +31,16 @@ class Solver():
                     sum += 1
         return sum % 2 == 1
 
+    def run(self, layout):
+        t = Tile()
+        t.layout = layout
+        return self.solve(t)
+
     def solve(self, tile):
         self.queue = PriorityQueue()
         self.metrics = Metrics()
         if not self.solvable(tile):
-            raise "Puzzle is not solvable"
+            raise NotSolvable
         self.original = tile
         self.queue.insert(self.original, 1)
         while(True):
