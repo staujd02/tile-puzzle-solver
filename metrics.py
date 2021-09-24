@@ -28,16 +28,20 @@ class Metrics(object):
         return matches
 
     def subset(self, tile):
-        goal = Tile()
-        rowMatches = self.listMatches(tile, goal)
-        columnMatches = self.listMatches(
-            self.transform(tile), self.transform(goal)
-        )
-        for one in [0, 2]:
-            for two in [0, 2]:
-                if(columnMatches[one] and rowMatches[two]):
-                    return 0
-        return 5
+        return 0
+        # res = 2
+        # goal = Tile()
+        # rowMatches = self.listMatches(tile, goal)
+        # columnMatches = self.listMatches(
+        #     self.transform(tile), self.transform(goal)
+        # )
+        # if(columnMatches[0] and columnMatches[2] and rowMatches[0] and rowMatches[2]):
+        #     return 0
+        # for one in [0, 2]:
+        #     for two in [0, 2]:
+        #         if(columnMatches[one] and rowMatches[two]):
+        #             return 1
+        # return res 
 
     def goalCorrdinates(self):
         return { 1: [0, 0], 2: [0, 1], 3: [0, 2],

@@ -1,4 +1,5 @@
 from solver import Solver
+from tile import Tile
 import random
 import timeit
 import time
@@ -32,6 +33,7 @@ def printPretty(theList):
     print("Steps to solve: " + str(len(theList)))
 
 run = Solver().run
+solvable = Solver().solvable
 
 # printPretty(run([
 #     [1, 2, 3],
@@ -45,11 +47,7 @@ run = Solver().run
 #     [0, 7, 6]
 # ]))
 
-random.seed(4)
-
-randList = []
-
-for test in range(10):
+def prepTest():
     new = range(9) 
     random.shuffle(new)
     layout = [
@@ -57,17 +55,35 @@ for test in range(10):
         new[3:6],
         new[6:9]
     ]
-    randList.append(layout)
+    return layout
 
-def runTest():
-    for layout in randList:
+def runTest(layoutList):
+    for layout in layoutList:
         try:
             run(layout)
         except:
             pass
 
-x = lambda : None
-print(timeit.timeit(runTest, x, time.time, 10))
+def canBeSolved(layout):
+    t = Tile()
+    t.layout = layout
+    return solvable(t)
+
+
+print("Steps, Time")
+
+for x in range(1):
+    start = 1000
+    random.seed(time.time())
+    for count in range(start):
+        test = prepTest()
+        if not canBeSolved(test):
+            continue
+        trash = lambda : None
+        myTest = lambda: run(test)
+        steps = len(run(test))
+        stopwatch = timeit.timeit(myTest, trash, time.time, 1)
+        print(str(steps) + ", " +  str(stopwatch))
 
 # for tests in range(50):
 #     new = range(9) 

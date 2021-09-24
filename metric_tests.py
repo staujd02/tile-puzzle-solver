@@ -25,33 +25,38 @@ class Metric_Tests(unittest.TestCase):
         self.assertEqual(self.metrics.displaced(tile), 2)
     
     # When no corners are solved
-    def test_corner_yields_one(self):
+    def test_corner_yields_two(self):
         results = Tile()
         results.layout = [
             [2, 5, 6],
             [1, 7, 8],
             [3, 4, 0]
         ] 
-        self.assertEqual(self.metrics.subset(results), 5)
+        self.assertEqual(self.metrics.subset(results), 2)
     
     # When upper left corner is solved
-    def test_corner_yields_zero(self):
+    def test_corner_yields_one(self):
         results = Tile()
         results.layout = [
             [1, 2, 3],
             [8, 5, 6],
             [7, 4, 0]
         ] 
-        self.assertEqual(self.metrics.subset(results), 0)
+        self.assertEqual(self.metrics.subset(results), 1)
     
     # When bottom right corner is solved
-    def test_corner_yields_zero_again(self):
+    def test_corner_yields_one_again(self):
         results = Tile()
         results.layout = [
             [2, 0, 3],
             [8, 1, 4],
             [7, 6, 5]
         ] 
+        self.assertEqual(self.metrics.subset(results), 1)
+
+   # When in the goal state 
+    def test_corner_yields_zero_again(self):
+        results = Tile()
         self.assertEqual(self.metrics.subset(results), 0)
 
     # When one tile is out of place
